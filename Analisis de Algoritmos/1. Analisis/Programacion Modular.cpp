@@ -74,10 +74,8 @@ int main()
 	}
 	std::cout << std::endl;
 	
-	// Liberar memoria del vector de tamaño fijo
 	std::free(gVect);
 	
-	// Liberar memoria del vector dinámico
 	std::free(dynamicVector.m_pVect);
 	
 	return 0;
