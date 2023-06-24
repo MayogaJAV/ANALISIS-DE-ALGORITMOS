@@ -1,40 +1,36 @@
-//Vectores y variables de tamaño fijo
+//Vectores y variables de tamaÃ±o fijo
 #include <iostream>
-#include <cstdlib> // Necesario para la función realloc
+#include <cstdlib> 
 
-int gVect[100]; // Buffer para almacenar los elementos
-int gnCountFixed; // Contador para conocer el número de elementos utilizados en el vector de tamaño fijo
+int gVect[100]; 
+int gnCountFixed;
 
 void InsertFixed(int elem)
 {
-	if (gnCountFixed < 100) // Solo se puede insertar si hay espacio
-		gVect[gnCountFixed++] = elem; // Insertar el elemento al final
+	if (gnCountFixed < 100) 
+		gVect[gnCountFixed++] = elem; 
 }
 
-int *gpVect = nullptr; // Buffer dinámico para almacenar los elementos
-int gnCountDynamic = 0; // Contador para conocer el número de elementos utilizados en el vector dinámico
+int *gpVect = nullptr; 
+int gnCountDynamic = 0; 
 int gnMax = 0;
 void Resize()
 {
-	const int delta = 10; // Utilizado para aumentar el tamaño del vector
+	const int delta = 10; 
 	gpVect = static_cast<int*>(std::realloc(gpVect, sizeof(int) * (gnMax + delta)));
-	gnMax += delta; // El valor máximo debe aumentar en delta
+	gnMax += delta; 
 }
 void InsertDynamic(int elem)
 {
-	if (gnCountDynamic == gnMax) // No hay espacio en este momento para elem
-		Resize(); // Redimensionar el vector antes de insertar elem
+	if (gnCountDynamic == gnMax)
+		Resize();
 	
-	gpVect[gnCountDynamic++] = elem; // Insertar el elemento al final de la secuencia
-}
+	gpVect[gnCountDynamic++] = elem; 
 
 
 
 int main()
 {
-	// Ejemplo de uso de las funciones Insert
-	
-	// Uso del vector de tamaño fijo
 	InsertFixed(1);
 	InsertFixed(2);
 	InsertFixed(3);
@@ -45,8 +41,7 @@ int main()
 		std::cout << gVect[i] << " ";
 	}
 	std::cout << std::endl;
-	
-	// Uso del vector dinámico
+
 	InsertDynamic(4);
 	InsertDynamic(5);
 	InsertDynamic(6);
@@ -58,7 +53,6 @@ int main()
 	}
 	std::cout << std::endl;
 	
-	// Liberar memoria del vector dinámico
 	std::free(gpVect);
 	
 	return 0;
