@@ -1,51 +1,48 @@
 //Programacion Modular
 #include <iostream>
-#include <cstdlib> // Necesario para la función realloc
+#include <cstdlib> 
 void Resize(int*& rpVect, int& rnMax)
 {
-	const int delta = 10; // Utilizado para aumentar el tamaño del vector
+	const int delta = 10;
 	rpVect = static_cast<int*>(std::realloc(rpVect, sizeof(int) * (rnMax + delta)));
-	rnMax += delta; // El valor máximo debe aumentar en delta
+	rnMax += delta; 
 }
 void Insert(int*& rpVect, int& rnCount, int& rnMax, int elem)
 {
-	if (rnCount == rnMax) // Verificar desbordamiento
-		Resize(rpVect, rnMax); // Redimensionar el vector antes de insertar elem
+	if (rnCount == rnMax) 
+		Resize(rpVect, rnMax); 
 	
-	rpVect[rnCount++] = elem; // Insertar el elemento al final de la secuencia
+	rpVect[rnCount++] = elem; 
 }
 
 
 
 struct Vector
 {
-	int* m_pVect; // Puntero al buffer
-	int m_nCount; // Controla cuántos elementos se utilizan realmente
-	int m_nMax; // Controla cuántos están asignados como máximo
-	int m_nDelta; // Para controlar el crecimiento
+	int* m_pVect; 
+	int m_nCount; 
+	int m_nMax; 
+	int m_nDelta; 
 };
 
 void Insert(Vector* pThis, int elem)
 {
-	if (pThis->m_nCount == pThis->m_nMax) // Verificar desbordamiento
-		Resize(pThis->m_pVect, pThis->m_nMax); // Redimensionar el vector antes de insertar elem
+	if (pThis->m_nCount == pThis->m_nMax) 
+		Resize(pThis->m_pVect, pThis->m_nMax); 
 	
-	pThis->m_pVect[pThis->m_nCount++] = elem; // Insertar el elemento al final de la secuencia
+	pThis->m_pVect[pThis->m_nCount++] = elem;
 }
 
 void Resize(Vector* pThis)
 {
-	const int delta = 10; // Utilizado para aumentar el tamaño del vector
+	const int delta = 10; 
 	pThis->m_pVect = static_cast<int*>(std::realloc(pThis->m_pVect, sizeof(int) * (pThis->m_nMax + delta)));
-	pThis->m_nMax += delta; // El valor máximo debe aumentar en delta
-}
+	pThis->m_nMax += delta; 
 
 int main()
 {
-	// Ejemplo de uso de las funciones y estructura
-	
-	// Uso del vector de tamaño fijo
-	int* gVect = nullptr; // Inicializar el puntero
+
+	int* gVect = nullptr; 
 	int gnCountFixed = 0;
 	int gnMaxFixed = 0;
 	
@@ -60,9 +57,8 @@ int main()
 	}
 	std::cout << std::endl;
 	
-	// Uso de la estructura Vector (vector dinámico)
 	Vector dynamicVector;
-	dynamicVector.m_pVect = nullptr; // Inicializar el puntero
+	dynamicVector.m_pVect = nullptr; 
 	dynamicVector.m_nCount = 0;
 	dynamicVector.m_nMax = 0;
 	dynamicVector.m_nDelta = 10;
@@ -78,10 +74,10 @@ int main()
 	}
 	std::cout << std::endl;
 	
-	// Liberar memoria del vector de tamaño fijo
+	// Liberar memoria del vector de tamaÃ±o fijo
 	std::free(gVect);
 	
-	// Liberar memoria del vector dinámico
+	// Liberar memoria del vector dinÃ¡mico
 	std::free(dynamicVector.m_pVect);
 	
 	return 0;
