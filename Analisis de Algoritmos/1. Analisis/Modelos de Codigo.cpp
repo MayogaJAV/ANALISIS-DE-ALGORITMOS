@@ -24,11 +24,11 @@ public:
 template <typename T>
 struct NODE
 {
-	T m_data;              // The data goes here
-	struct NODE* m_pNext; // Pointer to the next node
-	static long id;         // Node id
+	T m_data;              
+	struct NODE* m_pNext;
+	static long id;        
 	
-	NODE() // Constructor
+	NODE()
 		: m_data(0), m_pNext(nullptr)
 	{
 	}
@@ -43,12 +43,11 @@ class CLinkedList
 private:
 	struct NODE
 	{
-		T m_data;              // The data goes here
-		struct NODE* m_pNext; // Pointer to the next Node
-		// Some methods go here
+		T m_data;             
+		struct NODE* m_pNext; 
 	};
 	
-	NODE* m_pRoot; // Pointer to the root
+	NODE* m_pRoot; 
 	
 public:
 	CLinkedList() : m_pRoot(nullptr) {}
@@ -81,13 +80,12 @@ class CBinaryTree
 private:
 	struct NODE
 	{
-		T m_data;                 // The data goes here
-		struct NODE* m_pLeft;    // Pointer to the left node
-		struct NODE* m_pRight;   // Pointer to the right node
-		// Some methods go here
+		T m_data;                 
+		struct NODE* m_pLeft;    
+		struct NODE* m_pRight;   
 	};
 	
-	NODE* m_pRoot; // Pointer to the root
+	NODE* m_pRoot;
 	
 public:
 	CBinaryTree() : m_pRoot(nullptr) {}
