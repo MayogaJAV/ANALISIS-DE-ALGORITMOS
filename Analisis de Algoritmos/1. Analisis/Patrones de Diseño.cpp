@@ -1,17 +1,17 @@
-//Patrones de Diseño
+//Patrones de DiseÃ±o
 #include <iostream>
-#include <cstdlib> // Necesario para la función realloc
+#include <cstdlib> 
 
 template <typename Type>
 class CVector
 {
 public:
-	Type* m_pVect; // Puntero al buffer
-	int m_nCount; // Controla cuántos elementos se utilizan realmente
-	int m_nMax; // Controla cuántos están asignados como máximo
-	int m_nDelta; // Para controlar el crecimiento
+	Type* m_pVect; 
+	int m_nCount;
+	int m_nMax; 
+	int m_nDelta; 
 	
-	void Init(int delta) // Inicializar las variables privadas
+	void Init(int delta) 
 	{
 		m_pVect = nullptr;
 		m_nCount = 0;
@@ -19,39 +19,37 @@ public:
 		m_nDelta = delta;
 	}
 	
-	void Resize() // Redimensionar el vector en caso de desbordamiento
+	void Resize() 
 	{
 		m_pVect = static_cast<Type*>(std::realloc(m_pVect, sizeof(Type) * (m_nMax + m_nDelta)));
-		m_nMax += m_nDelta; // El valor máximo debe aumentar en delta
+		m_nMax += m_nDelta; 
 	}
 	
 public:
-		CVector(int delta = 10) // Constructor
+		CVector(int delta = 10)
 		{
 			Init(delta);
 		}
 		
-		void Insert(Type elem) // Insertar un nuevo elemento
+		void Insert(Type elem) 
 		{
-			if (m_nCount == m_nMax) // Verificar desbordamiento
-				Resize(); // Redimensionar el vector antes de insertar elem
+			if (m_nCount == m_nMax) 
+				Resize();
 			
-			m_pVect[m_nCount++] = elem; // Insertar el elemento al final de la secuencia
+			m_pVect[m_nCount++] = elem; 
 		}
 		
-		// Otros métodos van aquí
-		
-		~CVector() // Destructor
+		~CVector() 
 		{
-			std::free(m_pVect); // Liberar memoria asignada al vector
+			std::free(m_pVect); 
 		}
 };
 
 int main()
 {
-	// Ejemplo de uso de la clase CVector
 	
-	CVector<int> intVector; // Crear un vector de enteros
+	
+	CVector<int> intVector; 
 	
 	intVector.Insert(1);
 	intVector.Insert(2);
@@ -64,7 +62,7 @@ int main()
 	}
 	std::cout << std::endl;
 	
-	CVector<double> doubleVector(5); // Crear un vector de números de punto flotante con delta = 5
+	CVector<double> doubleVector(5); 
 	
 	doubleVector.Insert(1.5);
 	doubleVector.Insert(2.7);
